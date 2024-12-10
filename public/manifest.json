@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "BlotUp - Website Annotation & Issue Tracker",
+  "description": "Easily mark, edit, and resolve issues directly on live websites. Highlight text, add comments, capture automatic screenshots, and collaborate with your team. Integrate seamlessly with tools like Slack, Jira, and Trello for efficient issue management and project tracking.",
+  "version": "2.4.1.0",
+  "icons": {
+    "16": "/images/logo/icon-16.png",
+    "32": "/images/logo/icon-32.png",
+    "48": "/images/logo/icon-48.png",
+    "64": "/images/logo/icon-64.png",
+    "128": "/images/logo/icon-128.png",
+    "256": "/images/logo/icon-256.png"
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": "/images/state/icon-default.png",
+    "default_title": "blotup"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["scripts/content/content.script.global.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "scripts/service-worker.global.js"
+  },
+  "permissions": ["activeTab", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "externally_connectable": {
+    "matches": [
+      "https://blotup.com/*",
+      "https://app.blotup.com/*",
+      "https://website.blotup.com/*",
+      "http://localhost/*"
+    ]
+  }
+}
